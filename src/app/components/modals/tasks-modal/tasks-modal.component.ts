@@ -4,21 +4,16 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-tasks-modal',
   templateUrl: './tasks-modal.component.html',
   styleUrls: ['./tasks-modal.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksModalComponent implements OnInit {
-
   public waiting = false;
   public data: any;
   public submit = false;
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  public annoy() {
-
-  }
-
+  public annoy() {}
 }

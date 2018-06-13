@@ -6,15 +6,15 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-assign',
   templateUrl: './assign.component.html',
   styleUrls: ['./assign.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AssignComponent implements OnInit {
   public formMain: FormGroup;
   public waiting = false;
-  public data:any;
+  public data: any;
   public submit = false;
 
-  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) { }
+  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
     // Formgroup
@@ -23,15 +23,12 @@ export class AssignComponent implements OnInit {
     });
   }
 
-  public filesAdded(file:any) {
+  public filesAdded(file: any) {
     console.log('files', file);
     this.activeModal.close('Success');
   }
 
-
   public assign() {
     this.activeModal.close('Success');
   }
-
-
 }

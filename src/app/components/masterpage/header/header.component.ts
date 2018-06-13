@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  styles: [`
+  styles: [
+    `
 #logo{
     height: 59px;
     position: relative;
@@ -18,7 +19,8 @@ import { Router } from '@angular/router';
     position: absolute;
     top: 3px;
 }
-`],
+`,
+  ],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {

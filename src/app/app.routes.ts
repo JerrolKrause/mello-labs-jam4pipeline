@@ -47,7 +47,12 @@ export const ROUTES: Routes = [
 
       // Empty path string for homepage ('') needs to be LAST otherwise it catches all other routes
       { path: '', pathMatch: 'full', loadChildren: './routes/home/home.module#HomeModule', canActivate: [AuthGuard] },
-      { path: 'manager', pathMatch: 'full', loadChildren: './routes/manager/manager.module#ManagerModule', canActivate: [AuthGuard] },
+      {
+        path: 'manager',
+        pathMatch: 'full',
+        loadChildren: './routes/manager/manager.module#ManagerModule',
+        canActivate: [AuthGuard],
+      },
       {
         path: '**',
         component: NoContentComponent,

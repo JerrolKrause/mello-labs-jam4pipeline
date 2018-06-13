@@ -4,17 +4,14 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent implements OnInit {
-
   @Input() users: any[];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  public annoy() { }
-
+  public annoy() {}
 }

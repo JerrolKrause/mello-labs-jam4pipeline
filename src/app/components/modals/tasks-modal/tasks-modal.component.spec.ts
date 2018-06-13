@@ -6,12 +6,13 @@ describe('TasksModalComponent', () => {
   let component: TasksModalComponent;
   let fixture: ComponentFixture<TasksModalComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TasksModalComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [TasksModalComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TasksModalComponent);

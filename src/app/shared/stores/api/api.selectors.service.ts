@@ -22,13 +22,14 @@ const selectors = {
         let tasksTotal = random(1, 14);
         return usersNew.map((user, i) => {
           const elem = Object.assign({}, user, {
-            id: i, new: random(0, 10) > 3 ? true : false,
+            id: i,
+            new: random(0, 10) > 3 ? true : false,
             tasksTotal: tasksTotal,
             tasksNotStarted: tasksTotal + random(5, 14),
             tasksOld: random(0, 7),
-            lnkey: random(1000000, 1300000)
-          })
-          tasksTotal = random(1, 14);;
+            lnkey: random(1000000, 1300000),
+          });
+          tasksTotal = random(1, 14);
           return elem;
         });
       }

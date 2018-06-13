@@ -6,12 +6,13 @@ describe('DocumentUploadComponent', () => {
   let component: DocumentUploadComponent;
   let fixture: ComponentFixture<DocumentUploadComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DocumentUploadComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [DocumentUploadComponent],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DocumentUploadComponent);

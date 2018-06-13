@@ -19,7 +19,7 @@ export class ManagerComponent implements OnInit, OnDestroy {
   public formMain: FormGroup;
   public isEditing: boolean;
 
-  public dateStart:any;
+  public dateStart: any;
   public dateEnd: any;
 
   /** Hold subs for unsub */
@@ -50,7 +50,7 @@ export class ManagerComponent implements OnInit, OnDestroy {
   public usersRefresh() {
     this.api.users.get(true).subscribe();
   }
-  
+
   /**
    * Stop editing to create a new user
    */

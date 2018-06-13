@@ -6,15 +6,15 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-document-upload',
   templateUrl: './document-upload.component.html',
   styleUrls: ['./document-upload.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentUploadComponent implements OnInit {
   public formMain: FormGroup;
   public waiting = false;
-  public data:any;
+  public data: any;
   public submit = false;
 
-  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) { }
+  constructor(private fb: FormBuilder, public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
     // Formgroup
@@ -23,11 +23,8 @@ export class DocumentUploadComponent implements OnInit {
     });
   }
 
-  public filesAdded(file:any) {
+  public filesAdded(file: any) {
     console.log('files', file);
     this.activeModal.close('Success');
   }
-
-
-
 }
