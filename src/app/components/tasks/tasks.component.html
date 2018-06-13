@@ -8,14 +8,16 @@
       <th>Borrower</th>
       <th>Request Type</th>
       <th>Property State</th>
-      <th width="10%">Started</th>
+      <th width="10%" *ngIf="!manager">Started</th>
       <th width="10%" *ngIf="!manager">Follow Up</th>
-      <th width="10%">Last Followed Up</th>
+      <th width="10%" *ngIf="!manager">Last Followed Up</th>
       <th width="10%" *ngIf="!manager">Date Finished</th>
-      <th width="8%" *ngIf="manager && !finished">Annoy User</th>
+      <!--
+  <th width="8%" *ngIf="!manager && !finished">Annoy User</th>
+  -->
       <th width="8%" *ngIf="manager && !finished">Assign</th>
       <th width="10%" *ngIf="manager && !finished">
-        <app-launch-modal classes="btn btn-xs btn-primary d-inline-block float-right" [disabled]="bulkDisabled"
+        <app-launch-modal classes="btn btn-xs btn-secondary d-inline-block float-right" [disabled]="bulkDisabled"
                           modal="AssignComponent" size="lg" [data]="loans"
                           (success)="fileUploadComplete($event)">
           <i class="fa fa-share" aria-hidden="true"></i>
@@ -42,8 +44,8 @@
       <td>
         Texas
       </td>
-      <td>
-        <button class="btn btn-sm btn-primary w-100 text-center" (click)="start(entry.id)" *ngIf="!manager && !model[entry.id]?.dateStarted">
+      <td *ngIf="!manager">
+        <button class="btn btn-sm btn-secondary w-100 text-center" (click)="start(entry.id)" *ngIf="!manager && !model[entry.id]?.dateStarted">
           <i class="fa fa-play-circle" aria-hidden="true"></i> Start
         </button>
         <ng-container *ngIf="model[entry.id]?.dateStarted">
@@ -51,29 +53,31 @@
         </ng-container>
       </td>
       <td class="text-center" *ngIf="!manager">
-        <button class="btn btn-sm btn-primary w-100 text-center" [disabled]="!model[entry.id]?.dateStarted" (click)="followup(entry.id)">
+        <button class="btn btn-sm btn-secondary w-100 text-center" [disabled]="!model[entry.id]?.dateStarted" (click)="followup(entry.id)">
           <i class="fa fa-paper-plane" aria-hidden="true"></i> Follow Up
         </button>
       </td>
-      <td>
+      <td *ngIf="!manager">
         <small *ngIf="model[entry.id]?.dateFollowedUp">
           {{ model[entry.id].dateFollowedUp | date: 'short' }}
         </small>
       </td>
       <td class="text-center" *ngIf="!manager">
-        <app-launch-modal classes="btn btn-sm btn-primary w-100 text-center" [disabled]="!model[entry.id]?.dateStarted"
+        <app-launch-modal classes="btn btn-sm btn-secondary w-100 text-center" [disabled]="!model[entry.id]?.dateStarted"
                           modal="DocumentUploadComponent" size="lg" [data]="entry.id"
                           (success)="fileUploadComplete($event)">
           <i class="fa fa-thumbs-up" aria-hidden="true"></i> Finish
         </app-launch-modal>
       </td>
-      <td *ngIf="manager && !finished">
-        <button class="btn btn-sm btn-primary w-100 text-center" (click)="annoy(entry.id)">
-          <i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Annoy User
-        </button>
-      </td>
+      <!--
+  <td *ngIf="!manager && !finished">
+    <button class="btn btn-sm btn-secondary w-100 text-center" (click)="annoy(entry.id)">
+      <i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Annoy User
+    </button>
+  </td>
+  -->
       <td class="text-center" *ngIf="manager && !finished">
-        <app-launch-modal classes="btn btn-sm btn-primary w-100 text-center"
+        <app-launch-modal classes="btn btn-sm btn-secondary w-100 text-center"
                           modal="AssignComponent" size="lg" [data]="loans"
                           (success)="fileUploadComplete($event)">
           <i class="fa fa-share" aria-hidden="true"></i> Assign

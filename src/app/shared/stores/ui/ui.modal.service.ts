@@ -8,7 +8,7 @@ import { AppSettings } from 'src/app/shared/app.settings';
 import { AppStore } from 'src/app/shared/stores/store';
 import { ApiService } from 'src/app/shared/stores/api';
 
-import { ConfirmationModalComponent, LogoutModalComponent, DocumentUploadComponent, AssignComponent } from '$modals';
+import { ConfirmationModalComponent, LogoutModalComponent, DocumentUploadComponent, AssignComponent, TasksModalComponent } from '$modals';
 
 /** Sample Usage:
 this.ui.modals.open('ConfirmationModalComponent', false, 'lg', 'Are you sure you want to delete this user?', 'Delete User').result.then(
@@ -17,7 +17,7 @@ this.ui.modals.open('ConfirmationModalComponent', false, 'lg', 'Are you sure you
 */
 
 // List modals here by component name
-type modals = 'LogoutModalComponent' | 'ConfirmationModalComponent' | 'DocumentUploadComponent' | 'AssignComponent';
+type modals = 'LogoutModalComponent' | 'ConfirmationModalComponent' | 'DocumentUploadComponent' | 'AssignComponent' | 'TasksModalComponent';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +32,8 @@ export class UIModalService {
     ConfirmationModalComponent: ConfirmationModalComponent,
     LogoutModalComponent: LogoutModalComponent,
     DocumentUploadComponent: DocumentUploadComponent,
-    AssignComponent: AssignComponent
+    AssignComponent: AssignComponent,
+    TasksModalComponent: TasksModalComponent
   };
 
   constructor(

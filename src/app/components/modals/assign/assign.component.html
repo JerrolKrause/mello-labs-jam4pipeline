@@ -20,7 +20,7 @@
       <tbody>
         <tr *ngFor="let entry of data">
           <td>{{ entry.name }}</td>
-          <td>{{ entry.tasks }}</td>
+          <td>{{ entry.tasksNotStarted }}</td>
           <td><a (click)="assign()"><i aria-hidden="true" class="fa fa-share"></i> Assign</a></td>
         </tr>
       </tbody>

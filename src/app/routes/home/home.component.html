@@ -1,65 +1,8 @@
 <div id="app-home" class="container-fluid" *ngIf="{ state: usersState$ | async, users: users$ | async } as routeData">
-  <!--
-    <div class="card mb-3">
-      <div class="card-header p-2">
-
-        <div class="float-right">
-
-          <button class="btn btn-sm btn-secondary mr-1 d-inline-block"
-                  title="Toggle multi-screen view"
-                  [ngClass]="{ 'enabled' : ui.select.multiScreen$ | async }"
-                  (click)="ui.multiScreenToggle()">
-            <i aria-hidden="true" class="fa fa-external-link-square"></i>
-          </button>
-
-          <div ngbDropdown placement="bottom-right" #myDrop="ngbDropdown" class="d-inline-block">
-            <button ngbDropdownToggle class="btn btn-sm btn-primary">
-              <i class="fa fa-user mr-1"></i>
-              Add/Edit User
-            </button>
-            <div ngbDropdownMenu id="dropdownUser" style="min-width:320px;" class="p-3" (click)="$event.stopPropagation();">
-              <a class="float-right" (click)="userStopEdit()" *ngIf="isEditing"><i class="fa fa-user-plus" aria-hidden="true"></i> Add New User</a>
-              <h2 *ngIf="!isEditing"> <i class="fa fa-user-plus" aria-hidden="true"></i> Add User</h2>
-              <h2 *ngIf="isEditing"><i class="fa fa-user" aria-hidden="true"></i> Updating User</h2>
-              <hr />
-              <form [formGroup]="formMain" novalidate (ngSubmit)="userSubmit()">
-                <app-field-component [frmGroup]="formMain" frmControl="username" label="Username" [labelColumns]="5"></app-field-component>
-                <app-field-component [frmGroup]="formMain" frmControl="name" label="Name" [labelColumns]="5"></app-field-component>
-                <app-field-component [frmGroup]="formMain" frmControl="website" label="Website" [labelColumns]="5"></app-field-component>
-                <app-field-component [frmGroup]="formMain" frmControl="email" label="Email" [labelColumns]="5"></app-field-component>
-                <app-field-component [frmGroup]="formMain" frmControl="phone" label="Phone" [labelColumns]="5"></app-field-component>
-                <button type="submit" class="btn btn-interact float-right" [disabled]="routeData.state.modifying || formMain.invalid" [ngClass]="{ 'btn-waiting' : routeData.state.modifying }">
-                  <ng-container *ngIf="!isEditing">
-                    <i class="fa fa-user-plus" aria-hidden="true"></i> Add User
-                  </ng-container>
-                  <ng-container *ngIf="isEditing">
-                    <i class="fa fa-user" aria-hidden="true"></i> Update User
-                  </ng-container>
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn btn-icon btn-sm mr-2" (click)="usersRefresh()" [disabled]="routeData?.state?.loading">
-          <i class="fa fa-refresh"></i>
-        </button>
-
-  <form class="form-inline mr-3 d-inline-block">
-    <label class="icon filter" style="position:relative;">
-      <input class="form-control form-control-sm filterSearch" type="text" name="filterGlobal" placeholder="Filter name or website" [ngModel]="filterGlobal.term" (ngModelChange)="onfilterGlobal($event)" data-qa="hp-filter-global" />
-      <a (click)="filterGlobal.term = null; onfilterGlobal()" *ngIf="filterGlobal.term" style="position:absolute;right: 10px;top: 4px;"><i class="fa fa-remove"></i></a>
-    </label>
-  </form>
-</div>
-  </div>
-  -->
-
+ 
 <api-state [state]="routeData?.state" [toaster]="true" [showSuccess]="false" *ngIf="routeData?.state">
 
-  
-
-  <app-tasks [loans]="routeData.users"></app-tasks>
+  <app-tasks [loans]="routeData.users" [manager]="false" [finished]="false"></app-tasks>
 
 </api-state>
 

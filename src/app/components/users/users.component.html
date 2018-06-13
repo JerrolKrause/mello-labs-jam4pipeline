@@ -5,25 +5,43 @@
       <th>Total Tasks</th>
       <th>Not Started</th>
       <th>Tasks Over 7 Days</th>
-      <th>Annoy User</th>
+      <!--
+  <th>Annoy User</th>
+  -->
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let entry of users">
       <td>{{ entry.name }}</td>
-      <td>{{ entry.tasksTotal }}</td>
-      <td>{{ entry.tasksNotStarted }}</td>
-      <td><span class="mr-3">{{ entry.tasksOld }}</span>
-      <app-launch-modal *ngIf="entry.tasksOld"
-                  modal="AssignComponent" size="lg" [data]="users" [isButton]="false"
-                  (success)="fileUploadComplete($event)">
-  <i class="fa fa-share" aria-hidden="true"></i> Assign
-</app-launch-modal></td>
       <td>
-        <button class="btn btn-sm btn-primary w-100 text-center" (click)="annoy(entry.id)">
-          <i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Annoy User
-        </button>
+        <app-launch-modal class="d-block" classes="d-block"
+                          modal="TasksModalComponent" size="lg" [data]="users" [isButton]="false"
+                          (success)="fileUploadComplete($event)">
+          {{ entry.tasksTotal }}
+        </app-launch-modal>
       </td>
+      <td>
+        <app-launch-modal class="d-block" classes="d-block"
+                          modal="TasksModalComponent" size="lg" [data]="users" [isButton]="false"
+                          (success)="fileUploadComplete($event)">
+          {{ entry.tasksNotStarted }}
+        </app-launch-modal>
+
+      </td>
+      <td>
+        <app-launch-modal class="d-block" classes="d-block"
+                          modal="TasksModalComponent" size="lg" [data]="users" [isButton]="false"
+                          (success)="fileUploadComplete($event)">
+          {{ entry.tasksOld }}
+        </app-launch-modal>
+      </td>
+      <!--
+  <td>
+    <button class="btn btn-sm btn-primary w-100 text-center" (click)="annoy(entry.id)">
+      <i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Annoy User
+    </button>
+  </td>
+  -->
     </tr>
   </tbody>
 </table>

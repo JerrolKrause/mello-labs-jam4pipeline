@@ -1,0 +1,45 @@
+<form name="formMain" id="modalDocument">
+
+  <div class="modal-header">
+    <h3 class="modal-title"><i aria-hidden="true" class="fa fa-share"></i> Tasks List</h3>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body p-3" id="modal-body">
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th>Loan Number</th>
+          <th>Document</th>
+          <th style="width:20%;">Annoy</th>
+          <th style="width:20%;">Assign</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of data">
+          <td>{{ entry.lnkey }}</td>
+          <td>VOE</td>
+          <td>
+            <button class="btn btn-sm btn-secondary w-100 text-center" (click)="annoy(entry.id)">
+              <i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Annoy User
+            </button>
+          </td>
+          <td>
+            <app-launch-modal classes="btn btn-sm btn-secondary w-100 text-center"
+                              modal="AssignComponent" size="lg" [data]="data"
+                              (success)="fileUploadComplete($event)">
+              <i class="fa fa-share" aria-hidden="true"></i> Assign
+            </app-launch-modal>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal-footer" style="justify-content: space-between;">
+    <button type="button" class="btn btn-interact-outline float-left pull-left dismiss" (click)="activeModal.dismiss('Close click')">Cancel</button>
+  </div>
+
+</form>

@@ -82,8 +82,6 @@ export class TasksComponent implements OnInit {
   }
 
   public bulkAssignValid(test:any) {
-    console.log(test)
-    console.log(this.assignBulk);
     let isDisabled = true;
     Object.keys(this.assignBulk).forEach(key => {
       if (this.assignBulk[key]){
