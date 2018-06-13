@@ -1,30 +1,35 @@
 <div class="alert alert-warning icon" *ngIf="!loans?.length">No loans found</div>
 
 <table class="table table-sm table-striped" *ngIf="loans?.length">
-  <thead>
+  <thead class="small">
     <tr>
+      <th *ngIf="!manager"></th>
       <th>Loan Number</th>
       <th>Borrower</th>
       <th>Request Type</th>
       <th>Property State</th>
-      <th width="10%">Date Started</th>
-      <th width="10%">Date Followed Up</th>
-      <th width="10%">Date Finished</th>
-      <th width="8%" *ngIf="manager">Assign</th>
-      <th width="10%" *ngIf="manager">
-        Bulk Assign
-
-        <app-launch-modal classes="btn btn-xs btn-primary d-inline-block"  [disabled]="bulkDisabled"
+      <th width="10%">Started</th>
+      <th width="10%" *ngIf="!manager">Follow Up</th>
+      <th width="10%">Last Followed Up</th>
+      <th width="10%" *ngIf="!manager">Date Finished</th>
+      <th width="8%" *ngIf="manager && !finished">Annoy User</th>
+      <th width="8%" *ngIf="manager && !finished">Assign</th>
+      <th width="10%" *ngIf="manager && !finished">
+        <app-launch-modal classes="btn btn-xs btn-primary d-inline-block float-right" [disabled]="bulkDisabled"
                           modal="AssignComponent" size="lg" [data]="loans"
                           (success)="fileUploadComplete($event)">
           <i class="fa fa-share" aria-hidden="true"></i>
         </app-launch-modal>
-
+        Bulk Assign
       </th>
+      <th *ngIf="finished">Date Finished</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let entry of loans">
+      <td class="text-center" *ngIf="!manager">
+        <i class="fa fa-exclamation-triangle red" aria-hidden="true" *ngIf="model[entry.id]?.annoy" title="Urgent"></i>
+      </td>
       <td>
         123456789
       </td>
@@ -37,40 +42,51 @@
       <td>
         Texas
       </td>
-      <td class="text-center">
-        <button class="btn btn-sm btn-primary w-100 text-center" (click)="start(entry.id)" *ngIf="!model[entry.id]?.dateStarted">
+      <td>
+        <button class="btn btn-sm btn-primary w-100 text-center" (click)="start(entry.id)" *ngIf="!manager && !model[entry.id]?.dateStarted">
           <i class="fa fa-play-circle" aria-hidden="true"></i> Start
         </button>
         <ng-container *ngIf="model[entry.id]?.dateStarted">
           <small>{{ model[entry.id]?.dateStarted | date: 'short' }}</small>
         </ng-container>
       </td>
-      <td class="text-center">
-        <button class="btn btn-sm btn-primary w-100 text-center" [disabled]="!model[entry.id]?.dateStarted">
-          <i class="fa fa-paper-plane" aria-hidden="true"></i> Followup
+      <td class="text-center" *ngIf="!manager">
+        <button class="btn btn-sm btn-primary w-100 text-center" [disabled]="!model[entry.id]?.dateStarted" (click)="followup(entry.id)">
+          <i class="fa fa-paper-plane" aria-hidden="true"></i> Follow Up
         </button>
       </td>
-      <td class="text-center">
+      <td>
+        <small *ngIf="model[entry.id]?.dateFollowedUp">
+          {{ model[entry.id].dateFollowedUp | date: 'short' }}
+        </small>
+      </td>
+      <td class="text-center" *ngIf="!manager">
         <app-launch-modal classes="btn btn-sm btn-primary w-100 text-center" [disabled]="!model[entry.id]?.dateStarted"
                           modal="DocumentUploadComponent" size="lg" [data]="entry.id"
                           (success)="fileUploadComplete($event)">
           <i class="fa fa-thumbs-up" aria-hidden="true"></i> Finish
         </app-launch-modal>
       </td>
-
-      <td class="text-center" *ngIf="manager">
+      <td *ngIf="manager && !finished">
+        <button class="btn btn-sm btn-primary w-100 text-center" (click)="annoy(entry.id)">
+          <i class="fa fa-hand-pointer-o" aria-hidden="true"></i> Annoy User
+        </button>
+      </td>
+      <td class="text-center" *ngIf="manager && !finished">
         <app-launch-modal classes="btn btn-sm btn-primary w-100 text-center"
                           modal="AssignComponent" size="lg" [data]="loans"
                           (success)="fileUploadComplete($event)">
           <i class="fa fa-share" aria-hidden="true"></i> Assign
         </app-launch-modal>
       </td>
-      <td class="text-center" *ngIf="manager" style="position:relative;">
+      <td class="text-center" *ngIf="manager && !finished" style="position:relative;">
         <label class="mb-0 pt-2 pb-2">
           <input class="form-control" type="checkbox" [(ngModel)]="assignBulk[entry.id]" (ngModelChange)="bulkAssignValid($event)" />
         </label>
       </td>
-
+      <td *ngIf="finished">
+        <small>{{ dateCurrent | date: 'short' }}</small>
+      </td>
     </tr>
   </tbody>
 </table>

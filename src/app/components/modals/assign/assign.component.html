@@ -13,12 +13,14 @@
       <thead>
         <tr>
           <th>User</th>
+          <th>Outstanding Tasks</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let entry of data">
           <td>{{ entry.name }}</td>
+          <td>{{ entry.tasks }}</td>
           <td><a (click)="assign()"><i aria-hidden="true" class="fa fa-share"></i> Assign</a></td>
         </tr>
       </tbody>

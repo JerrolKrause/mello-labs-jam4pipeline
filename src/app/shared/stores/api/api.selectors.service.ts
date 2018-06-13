@@ -19,8 +19,13 @@ const selectors = {
       if (users) {
         let usersNew: Models.User[] = [];
         times(1, () => (usersNew = [...usersNew, ...users]));
-        
-        return usersNew.map((user, i) => Object.assign({}, user, { id: i, new: random(0, 10) > 3 ? true : false }));
+        const tasksTotal = random(1, 14)
+        return usersNew.map((user, i) => Object.assign({}, user, {
+          id: i, new: random(0, 10) > 3 ? true : false,
+          tasksTotal: tasksTotal,
+          tasksNotStarted: tasksTotal + random(5, 14),
+          tasksOld: random(0, 7),
+        }));
       }
     },
   ),

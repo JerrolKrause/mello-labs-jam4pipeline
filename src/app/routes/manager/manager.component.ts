@@ -19,6 +19,9 @@ export class ManagerComponent implements OnInit, OnDestroy {
   public formMain: FormGroup;
   public isEditing: boolean;
 
+  public dateStart:any;
+  public dateEnd: any;
+
   /** Hold subs for unsub */
   private subs: Subscription[] = [];
 
