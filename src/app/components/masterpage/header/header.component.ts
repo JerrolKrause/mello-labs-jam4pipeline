@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
     min-width: 310px;
 }
 .logo {
-    background: url(./assets/img/logo.png) no-repeat 0 0;
+    background: url(./assets/img/logo2.png) no-repeat 0 0;
     min-width: 310px;
     display: block;
     height: 67px;

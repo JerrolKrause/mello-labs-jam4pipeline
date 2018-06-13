@@ -15,4 +15,6 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
   }
 
+  public annoy() { }
+
 }

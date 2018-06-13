@@ -13,7 +13,8 @@
       <td>{{ entry.name }}</td>
       <td>{{ entry.tasksTotal }}</td>
       <td>{{ entry.tasksNotStarted }}</td>
-      <td><span class="mr-3">{{ entry.tasksOld }}</span> <app-launch-modal classes=""
+      <td><span class="mr-3">{{ entry.tasksOld }}</span>
+      <app-launch-modal *ngIf="entry.tasksOld"
                   modal="AssignComponent" size="lg" [data]="users" [isButton]="false"
                   (success)="fileUploadComplete($event)">
   <i class="fa fa-share" aria-hidden="true"></i> Assign
