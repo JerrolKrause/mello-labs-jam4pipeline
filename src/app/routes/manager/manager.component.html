@@ -57,9 +57,36 @@
 
 <api-state [state]="routeData?.state" [toaster]="true" [showSuccess]="false" *ngIf="routeData?.state">
 
-  
+  <ngb-tabset class="nav-tabs-sm" *ngIf="routeData?.users?.length"
+              (tabChange)="ui.tabChange('HOME', $event)"
+              [activeId]="ui.select.tabActive$('HOME') | async">
+    <ngb-tab id="tab-1">
+      <ng-template ngbTabTitle>
+        <i aria-hidden="true" class="fa fa-share"></i> Assign <small><em>({{ routeData.users | filter: true : 'new' | count }})</em></small>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <app-tasks [loans]="routeData.users | filter: true : 'new'" [manager]="true"></app-tasks>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-2">
+      <ng-template ngbTabTitle>
+        <i aria-hidden="true" class="fa fa-users"></i> People <small><em>({{ routeData.users | filter: false : 'new' | count }})</em></small>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <app-tasks [loans]="routeData.users | filter: false : 'new'" [manager]="true"></app-tasks>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-3">
+      <ng-template ngbTabTitle>
+        <i aria-hidden="true" class="fa fa-thumbs-up"></i> Finished <small><em>({{ routeData.users| count }})</em></small>
+      </ng-template>
+      <ng-template ngbTabContent>
+        <app-tasks [loans]="routeData.users" [manager]="true"></app-tasks>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
 
-  <app-tasks [loans]="routeData.users"></app-tasks>
+  
 
 </api-state>
 

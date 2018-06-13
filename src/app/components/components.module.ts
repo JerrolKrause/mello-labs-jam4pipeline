@@ -22,10 +22,11 @@ import {
 } from '$components';
 
 // Modals import
-import { ConfirmationModalComponent, LogoutModalComponent } from '$modals';
+import { ConfirmationModalComponent, LogoutModalComponent, DocumentUploadComponent, AssignComponent } from '$modals';
+import { TasksComponent } from './tasks/tasks.component';
 
 // Models to include
-export const APP_MODALS = [ConfirmationModalComponent, LogoutModalComponent];
+export const APP_MODALS = [ConfirmationModalComponent, LogoutModalComponent, DocumentUploadComponent, AssignComponent];
 
 // Components to include
 export const APP_COMPONENTS = [
@@ -36,6 +37,7 @@ export const APP_COMPONENTS = [
   NavComponent,
   NavSearchComponent,
   LaunchModalComponent,
+  TasksComponent,
 
   ...APP_MODALS,
 ];

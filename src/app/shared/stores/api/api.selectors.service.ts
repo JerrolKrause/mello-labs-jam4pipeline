@@ -18,7 +18,8 @@ const selectors = {
     users => {
       if (users) {
         let usersNew: Models.User[] = [];
-        times(20, () => (usersNew = [...usersNew, ...users]));
+        times(1, () => (usersNew = [...usersNew, ...users]));
+        
         return usersNew.map((user, i) => Object.assign({}, user, { id: i, new: random(0, 10) > 3 ? true : false }));
       }
     },

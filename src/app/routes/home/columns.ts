@@ -3,7 +3,7 @@ import { Datagrid } from '@mello-labs/datagrid';
 export const columns: Datagrid.Column[] = [
   {
     prop: 'name',
-    label: 'Name',
+    label: 'Loan Number',
     columnType: 'string',
     canSort: true,
     canGroup: true,
@@ -17,7 +17,7 @@ export const columns: Datagrid.Column[] = [
   },
   {
     prop: 'username',
-    label: 'Username',
+    label: 'Borrower',
     columnType: 'string',
     width: 70,
     canSort: true,
@@ -31,9 +31,10 @@ export const columns: Datagrid.Column[] = [
     canSearch: true,
   },
   {
-    prop: 'email',
-    label: 'Email',
+    prop: 'username',
+    label: 'Request Type',
     columnType: 'string',
+    width: 70,
     canSort: true,
     canGroup: true,
     canFilter: true,
@@ -45,9 +46,10 @@ export const columns: Datagrid.Column[] = [
     canSearch: true,
   },
   {
-    prop: 'phone',
-    label: 'Phone',
+    prop: 'username',
+    label: 'Documents',
     columnType: 'string',
+    width: 70,
     canSort: true,
     canGroup: true,
     canFilter: true,
@@ -60,7 +62,7 @@ export const columns: Datagrid.Column[] = [
   },
   {
     prop: 'website',
-    label: 'Website',
+    label: 'Actions',
     columnType: 'string',
     canSort: true,
     canGroup: true,
