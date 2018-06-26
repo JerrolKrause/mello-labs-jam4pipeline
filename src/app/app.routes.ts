@@ -46,13 +46,17 @@ export const ROUTES: Routes = [
       // { path: 'users', loadChildren: './routes/users/users.module#UsersModule', canActivate: [AuthGuard] },
 
       // Empty path string for homepage ('') needs to be LAST otherwise it catches all other routes
-      { path: '', pathMatch: 'full', loadChildren: './routes/home/home.module#HomeModule', canActivate: [AuthGuard] },
       {
-        path: 'manager',
-        pathMatch: 'full',
-        loadChildren: './routes/manager/manager.module#ManagerModule',
+        path: 'jam4pipeline',
+        loadChildren: './routes/jam4pipeline/jam4pipeline.module#Jam4pipelineModule',
         canActivate: [AuthGuard],
       },
+      //{
+      //  path: 'manager',
+      //  pathMatch: 'full',
+      //  loadChildren: './routes/manager/manager.module#ManagerModule',
+      //  canActivate: [AuthGuard],
+      //},
       {
         path: '**',
         component: NoContentComponent,

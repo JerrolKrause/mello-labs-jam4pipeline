@@ -1,0 +1,48 @@
+<div class="alert alert-warning icon mb-0" *ngIf="!users?.length">No users found</div>
+
+<table class="table table-sm table-striped" *ngIf="users?.length">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Total Tasks</th>
+      <th>Not Started</th>
+      <th>Tasks Over 7 Days</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let entry of users">
+      <td>{{ entry.name }}</td>
+      <td>
+        <!--
+        <app-launch-modal class="d-block" classes="d-block"
+                          modal="TasksModalComponent" size="lg" [data]="users" [isButton]="false"
+                          (success)="fileUploadComplete($event)">
+          {{ entry.tasksTotal }}
+        </app-launch-modal>
+        -->
+        {{ entry.tasksTotal }}
+      </td>
+      <td>
+        <!--
+        <app-launch-modal class="d-block" classes="d-block"
+                          modal="TasksModalComponent" size="lg" [data]="users" [isButton]="false"
+                          (success)="fileUploadComplete($event)">
+          {{ entry.tasksNotStarted }}
+        </app-launch-modal>
+        -->
+        {{ entry.tasksNotStarted }}
+      </td>
+      <td>
+        <!--
+        <app-launch-modal class="d-block" classes="d-block"
+                          modal="TasksModalComponent" size="lg" [data]="users" [isButton]="false"
+                          (success)="fileUploadComplete($event)">
+          {{ entry.tasksOld }}
+        </app-launch-modal>
+        -->
+        {{ entry.tasksOld }}
+      </td>
+   
+    </tr>
+  </tbody>
+</table>

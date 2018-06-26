@@ -1,0 +1,68 @@
+<div id="app-manager" class="container-fluid" *ngIf="{ loans : loans$ | async, users : users$ | async } as routeData">
+
+  <app-state [state]="routeData.users">
+
+      <ngb-tabset class="nav-tabs-sm">
+        <ngb-tab id="tab-1">
+          <ng-template ngbTabTitle>
+            <i aria-hidden="true" class="fa fa-share"></i> Assign Tasks <small><em>({{ routeData.users?.length }})</em></small>
+          </ng-template>
+          <ng-template ngbTabContent>
+            <app-tasks [loans]="routeData.users" [manager]="true"></app-tasks>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-2">
+          <ng-template ngbTabTitle>
+            <i aria-hidden="true" class="fa fa-users"></i> People <small><em>({{ routeData.users?.length }})</em></small>
+          </ng-template>
+          <ng-template ngbTabContent>
+            <app-users [users]="routeData.users"></app-users>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-3">
+          <ng-template ngbTabTitle>
+            <i aria-hidden="true" class="fa fa-thumbs-up"></i> Finished <small><em>({{ routeData.users?.length }})</em></small>
+          </ng-template>
+          <ng-template ngbTabContent>
+            <div class="card rounded-0">
+              <div class="card-header p-2 rounded-0 border-bottom-0">
+
+                <form class="form-inline">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control form-control-sm" placeholder="yyyy-mm-dd"
+                             name="dp" [(ngModel)]="dateStart" ngbDatepicker #d="ngbDatepicker">
+                      <div class="input-group-append">
+                        <button class="btn btn-secondary btn-sm" (click)="d.toggle()" type="button">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <span class="pl-2 pr-2">
+                    -
+                  </span>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control form-control-sm" placeholder="yyyy-mm-dd"
+                             name="dp2" [(ngModel)]="dateEnd" ngbDatepicker #d2="ngbDatepicker">
+                      <div class="input-group-append">
+                        <button class="btn btn-secondary btn-sm" (click)="d2.toggle()" type="button">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary btn-sm ml-2"><i class="fa fa-search-plus" aria-hidden="true"></i> Search</button>
+                </form>
+
+              </div>
+            </div>
+            <app-tasks [loans]="routeData.loans" [manager]="true" [finished]="true"></app-tasks>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+
+  </app-state>
+</div>
+

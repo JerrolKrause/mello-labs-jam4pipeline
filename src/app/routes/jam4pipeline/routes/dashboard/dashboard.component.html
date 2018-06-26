@@ -1,0 +1,8 @@
+<div id="app-home" class="container-fluid" *ngIf="{ loans : loans$ | async } as routeData">
+
+  <app-state [state]="routeData.loans">
+    <app-tasks [loans]="routeData.loans.data" [manager]="false" [finished]="false" (action)="action($event)"></app-tasks>
+  </app-state>
+
+</div>
+
