@@ -1,0 +1,31 @@
+<form name="formMain" id="modalDocument">
+
+  <div class="modal-header">
+    <h3 class="modal-title"><i class="fa fa-upload" aria-hidden="true"></i> Upload Document for <strong>{{ data }}</strong></h3>
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body p-3" id="modal-body">
+    <div style="position:relative;min-height:500px;">
+    File Upload Here
+      <!--
+    <app-file-upload #fileUpload
+                     [frmGroup]="formMain"
+                     frmControl="files"
+                     label="Upload Files"
+                     [multiple]="true"
+                     [fillParent]="true" [dragNdrop]="true"
+                     (filesAdded)="filesAdded($event)">
+    </app-file-upload>
+    -->
+    </div>
+  </div>
+
+  <div class="modal-footer" style="justify-content: space-between;">
+    <button type="button" class="btn btn-interact-outline float-left pull-left dismiss">Cancel</button>
+  
+  </div>
+
+</form>

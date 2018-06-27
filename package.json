@@ -49,6 +49,7 @@
     "core-js": "2.4.1",
     "document-register-element": "1.7.2",
     "lodash": "4.17.4",
+    "ngx-bootstrap": "^3.0.1",
     "rxjs": "6.2.0",
     "typescript-fsa": "2.5.0",
     "zone.js": "0.8.26"

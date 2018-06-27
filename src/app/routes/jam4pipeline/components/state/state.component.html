@@ -3,7 +3,7 @@
   <p><strong>Error loading data</strong></p>
   <p><em>Send the information below to the tech monkeys, they love this stuff</em></p>
   <hr />
-  <div> {{state.error | json }}</div>
+  <div><pre> {{state.error | json }}</pre></div>
 </div>
 <ng-container *ngIf="!state.loading && !state.error">
   <ng-content></ng-content>

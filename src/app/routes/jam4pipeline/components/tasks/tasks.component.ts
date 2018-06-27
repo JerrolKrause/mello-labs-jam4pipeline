@@ -4,6 +4,8 @@ import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
 import { TaskType, Models } from '../../shared/jam4pipeline.models';
+import { Jam4pipelineService } from '../../shared/jam4pipeline.service';
+import { ModalsService } from '../../shared/modals.service';
 
 interface tasks {
   [key: string]: taskModel;
@@ -57,7 +59,7 @@ export class TasksComponent implements OnInit {
     '9': {},
   };
 
-  constructor() {}
+  constructor(public jamSvc: Jam4pipelineService, public modals: ModalsService) {}
 
   ngOnInit() {}
 

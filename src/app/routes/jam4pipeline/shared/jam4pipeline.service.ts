@@ -10,7 +10,10 @@ export class Jam4pipelineService {
   public loans$ = new BehaviorSubject<Models.ApiState<any>>({ loading: null, data: null, error: null });
   public users$ = new BehaviorSubject<Models.ApiState<any>>({ loading: null, data: null, error: null });
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) { }
+
+  
 
   /**
    * Loans Api interaction
@@ -77,6 +80,7 @@ export class Jam4pipelineService {
         this.users.annoy(action.data);
         break;
       case TaskType.uploadFile:
+        // Do something
         break;
     }
   }

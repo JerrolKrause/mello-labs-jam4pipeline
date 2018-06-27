@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ModalsService } from '../../shared/modals.service';
 
 @Component({
   selector: 'app-users',
@@ -9,7 +10,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 export class UsersComponent implements OnInit {
   @Input() users: any[];
 
-  constructor() {}
+  constructor(public modals: ModalsService) {}
 
   ngOnInit() {}
 
