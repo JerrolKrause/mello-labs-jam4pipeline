@@ -24,7 +24,7 @@ export class AuthService {
   /** Holds reference to logout modal */
   public logOutModal: NgbModalRef;
   /** The http call so a token can be refreshed with a callback and success method */
-  public refreshToken = this.http.put(this.settings.apiUrl + environment.endpoints.authTokenRefresh, null);
+  public refreshToken = this.http.post(this.settings.apiUrl + environment.endpoints.authTokenRefresh, null);
   /** If a token is passed in without logging in no timer duration is present. Default to this */
   private setTimerDefaultSeconds = 5; // 5 minutes
 
@@ -86,7 +86,7 @@ export class AuthService {
    * Refresh the token
    */
   public refreshTokenUpdate(): void {
-    this.refreshToken.subscribe(
+    this.http.get(this.settings.apiUrl + environment.endpoints.authTokenRefresh, null).subscribe(
       (response: any) => {
         // Make sure a token is present before it is replaced
         if (this.settings.token) {
@@ -133,7 +133,7 @@ export class AuthService {
       dismissReason => {
         // When modal is dismissed
         if (dismissReason !== 'norefresh') {
-          this.refreshTokenUpdate();
+          //this.refreshTokenUpdate();
         }
       },
     );

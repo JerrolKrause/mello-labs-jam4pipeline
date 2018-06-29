@@ -7,11 +7,11 @@ import { TaskType, Models } from '../../shared/jam4pipeline.models';
 import { Jam4pipelineService } from '../../shared/jam4pipeline.service';
 import { ModalsService } from '../../shared/modals.service';
 
-interface tasks {
-  [key: string]: taskModel;
+interface Tasks {
+  [key: string]: TaskModel;
 }
 
-interface taskModel {
+interface TaskModel {
   dateStarted?: string;
   annoy?: boolean;
   dateFollowedUp?: string;
@@ -24,7 +24,7 @@ interface taskModel {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TasksComponent implements OnInit {
-  @Input() loans: any[];
+  @Input() tasks: Models.Tasks[];
   @Input() manager = false;
   @Input() finished = false;
 
@@ -35,7 +35,7 @@ export class TasksComponent implements OnInit {
 
   public dateCurrent = Date.now();
 
-  public model: tasks = {
+  public model: Tasks = {
     '1': {
       dateStarted: '12/21/2018',
     },

@@ -1,6 +1,6 @@
-<div class="alert alert-warning icon mb-0" *ngIf="!loans?.length">No loans found</div>
+<div class="alert alert-warning icon mb-0" *ngIf="!tasks?.length">No tasks found</div>
 
-<table class="table table-sm table-striped" *ngIf="loans?.length">
+<table class="table table-sm table-striped" *ngIf="tasks?.length">
   <thead class="small">
     <tr>
       <th *ngIf="!manager"></th>
@@ -23,28 +23,28 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let entry of loans">
+    <tr *ngFor="let entry of tasks">
       <td class="text-center" *ngIf="!manager">
-        <i class="fa fa-exclamation-triangle red" aria-hidden="true" *ngIf="model[entry.id]?.annoy" title="Urgent"></i>
+        <i class="fa fa-exclamation-triangle red" aria-hidden="true" *ngIf="entry.urgent" title="Urgent"></i>
       </td>
       <td>
-        123456789
+        {{ entry.loanNumber }}
       </td>
       <td>
-        {{ entry.name }}
+        {{ entry.borrowerName }}
       </td>
       <td>
-        VOE
+        {{ entry.taskType }}
       </td>
       <td>
-        Texas
+        {{ entry.propertyState }}
       </td>
       <td *ngIf="!manager">
         <button class="btn btn-sm btn-secondary w-100 text-center" (click)="start(entry.id)" *ngIf="!manager && !model[entry.id]?.dateStarted">
           <i class="fa fa-play-circle" aria-hidden="true"></i> Start
         </button>
         <ng-container *ngIf="model[entry.id]?.dateStarted">
-          <small>{{ model[entry.id]?.dateStarted | date: 'short' }}</small>
+          <small>{{ entry.startedDate | date: "short" }}</small>
         </ng-container>
       </td>
       <td class="text-center" *ngIf="!manager">
@@ -54,14 +54,16 @@
       </td>
       <td *ngIf="!manager">
         <small *ngIf="model[entry.id]?.dateFollowedUp">
-          {{ model[entry.id].dateFollowedUp | date: 'short' }}
+          {{ entry.startedDate | date: "short" }}
         </small>
       </td>
       <td class="text-center" *ngIf="!manager">
-        <a (click)="modals.openModalWithComponent('upload',model[entry.id])"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Finish</a>
+        <a (click)="modals.openModalWithComponent('upload',model[entry.id])">
+        <i class="fa fa-thumbs-up" aria-hidden="true"></i> Finish</a>
       </td>
       <td class="text-center" *ngIf="manager && !finished">
-        <a (click)="modals.openModalWithComponent('assign',model[entry.id])"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Finish</a>
+        <a (click)="modals.openModalWithComponent('assign',model[entry.id])">
+        <i class="fa fa-thumbs-up" aria-hidden="true"></i> Finish</a>
 
       </td>
       <td class="text-center" *ngIf="manager && !finished" style="position:relative;">
@@ -70,7 +72,7 @@
         </label>
       </td>
       <td *ngIf="finished">
-        <small>{{ dateCurrent | date: 'short' }}</small>
+        <small>{{ dateCurrent | date: "short" }}</small>
       </td>
     </tr>
   </tbody>

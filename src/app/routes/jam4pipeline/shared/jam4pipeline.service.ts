@@ -1,44 +1,55 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
-import { Models, TaskType } from './jam4pipeline.models';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject } from "rxjs";
+import { Models, TaskType } from "./jam4pipeline.models";
 
-const apiRoot = '/api/v2';
+const apiRoot = "https://mlo-public-dev.loandepotdev.works/api/v1";
 
 @Injectable()
 export class Jam4pipelineService {
-  public loans$ = new BehaviorSubject<Models.ApiState<any>>({ loading: null, data: null, error: null });
+  public tasks$ = new BehaviorSubject<Models.ApiState<Models.Tasks>>({ loading: null, data: null, error: null });
   public users$ = new BehaviorSubject<Models.ApiState<any>>({ loading: null, data: null, error: null });
 
-
-  constructor(private http: HttpClient) { }
-
-  
+  constructor(private http: HttpClient) {}
 
   /**
    * Loans Api interaction
    */
-  public loans = {
-    getAll: () => {
-      this.loans$.next({ loading: true, data: null, error: null }); // Loading
-      this.http.get<any[]>(apiRoot + '/loans').subscribe(
-        loans => this.loans$.next({ loading: false, data: loans, error: null }), // Success
-        error => this.loans$.next({ loading: false, data: null, error: error }), // Error
+  public tasks = {
+    getUnassigned: () => {
+      this.tasks$.next({ loading: true, data: null, error: null }); // Loading
+      this.http.get<Models.Tasks[]>(apiRoot + "/taskpipeline/tasks/unassigned").subscribe(
+        loans => this.tasks$.next({ loading: false, data: loans, error: null }), // Success
+        error => this.tasks$.next({ loading: false, data: null, error: error }), // Error
       );
     },
-    start: (data: any) => {
-      this.http.post(apiRoot + '/loans/start', data).subscribe(() => {
-        this.loans.getAll();
+    getAssignedToUser: (userId: string = 'f3d2d332-8a68-4ed4-8ffa-2e54a49f5483') => {
+      this.tasks$.next({ loading: true, data: null, error: null }); // Loading
+      this.http.get<Models.Tasks[]>(apiRoot + "/taskpipeline/tasks/user/" + userId).subscribe(
+        loans => this.tasks$.next({ loading: false, data: loans, error: null }), // Success
+        error => this.tasks$.next({ loading: false, data: null, error: error }), // Error
+      );
+    },
+    getCompleted: () => {
+      this.tasks$.next({ loading: true, data: null, error: null }); // Loading
+      this.http.get<Models.Tasks[]>(apiRoot + "/taskpipeline/tasks/unassigned").subscribe(
+        loans => this.tasks$.next({ loading: false, data: loans, error: null }), // Success
+        error => this.tasks$.next({ loading: false, data: null, error: error }), // Error
+      );
+    },
+    start: (taskGuid: string) => {
+      this.http.post(apiRoot + `/taskpipeline/tasks/${taskGuid}/start`, taskGuid).subscribe(() => {
+        this.tasks.getUnassigned();
       });
     },
-    followup: (data: any) => {
-      this.http.post(apiRoot + '/loans/followup', data).subscribe(() => {
-        this.loans.getAll();
+    followup: (taskGuid: string) => {
+      this.http.post(apiRoot + `/taskpipeline/tasks/${taskGuid}/followup`, taskGuid).subscribe(() => {
+        this.tasks.getUnassigned();
       });
     },
-    finish: (data: any) => {
-      this.http.post(apiRoot + '/loans/finish', data).subscribe(() => {
-        this.loans.getAll();
+    finish: (taskGuid: string) => {
+      this.http.post(apiRoot + `/taskpipeline/tasks/${taskGuid}/complete`, taskGuid).subscribe(() => {
+        this.tasks.getUnassigned();
       });
     },
   };
@@ -47,19 +58,19 @@ export class Jam4pipelineService {
    * Users Api interaction
    */
   public users = {
-    getAll: () => {
+    getAllUsers: () => {
       this.users$.next({ loading: true, data: null, error: null }); // Loading
-      this.http.get<any[]>(apiRoot + '/users').subscribe(
+      this.http.get<any[]>(apiRoot + "/taskpipeline/permissions/user").subscribe(
         users => this.users$.next({ loading: false, data: users, error: null }), // Success
         error => this.users$.next({ loading: false, data: null, error: error }), // Error
       );
     },
     annoy: (data: any) => {
-      this.http.post(apiRoot + '/users/annoy', data).subscribe(() => {});
+      this.http.post(apiRoot + "/users/annoy", data).subscribe(() => {});
     },
     assign: (data: any) => {
-      this.http.post(apiRoot + '/users/assign', data).subscribe(() => {
-        this.users.getAll();
+      this.http.post(apiRoot + "/users/assign", data).subscribe(() => {
+        this.users.getAllUsers();
       });
     },
   };
@@ -71,10 +82,10 @@ export class Jam4pipelineService {
   public actionTaken(action: Models.TaskEvent) {
     switch (action.type) {
       case TaskType.start:
-        this.loans.start(action.data);
+        this.tasks.start(action.data);
         break;
       case TaskType.followup:
-        this.loans.followup(action.data);
+        this.tasks.followup(action.data);
         break;
       case TaskType.annoy:
         this.users.annoy(action.data);

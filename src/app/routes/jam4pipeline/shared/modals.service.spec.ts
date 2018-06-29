@@ -5,11 +5,14 @@ import { ModalsService } from './modals.service';
 describe('ModalsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ModalsService]
+      providers: [ModalsService],
     });
   });
 
-  it('should be created', inject([ModalsService], (service: ModalsService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([ModalsService], (service: ModalsService) => {
+      expect(service).toBeTruthy();
+    }),
+  );
 });

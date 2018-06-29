@@ -15,7 +15,7 @@ export class AssignComponent implements OnInit {
   public data: any;
   public submit = false;
 
-  constructor(private fb: FormBuilder, public jamSvc: Jam4pipelineService) { }// , public activeModal: NgbActiveModal
+  constructor(private fb: FormBuilder, public jamSvc: Jam4pipelineService) {} // , public activeModal: NgbActiveModal
 
   ngOnInit() {
     // Formgroup

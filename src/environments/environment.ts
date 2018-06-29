@@ -12,7 +12,7 @@ export const environment = {
   },
   settings: {
     /** Is an authentication endpoint available? If so make sure to update the endpoints in this file */
-    enableAuth: false,
+    enableAuth: true,
     /** Enable service worker functionality */
     enableServiceWorker: false,
     /** Is this app going to communicate with other domains or instances of itself for multiscreen usage?
@@ -31,9 +31,9 @@ export const environment = {
     /** Location to get environment and config settings */
     envConfig: 'assets/mock-data/env-settings.json',
     /** Login endpoint */
-    authLogin: '/authentication/login',
+    authLogin: '/auth',
     /** Refresh token endpoint */
-    authTokenRefresh: '/authentication/token',
+    authTokenRefresh: '/auth/refreshtoken',
   },
   state: {
     /** Which UI store properties to not write to localstorage. IE do not persist confidential/personal information */

@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { map, filter, mergeMap } from 'rxjs/operators';
 
 import { environment } from '$env';
-import { AuthService, ServiceWorkerService, AppCommsService, AppConfigService } from '$shared';
+import { ServiceWorkerService, AppCommsService, AppConfigService } from '$shared';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private title: Title,
-    private authService: AuthService,
+  //  private authService: AuthService,
     private sw: ServiceWorkerService,
     private comms: AppCommsService,
     private config: AppConfigService,
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
         this.title.setTitle(event['title'] + ' | ' + environment.properties.appName); // Change document title
         // If auth endpoint is available and not on the login page
         if (environment.settings.enableAuth && this.router.url.toLowerCase().indexOf('login') === -1) {
-          this.authService.refreshTokenUpdate(); // On Route change, refresh authentication token
+          //this.authService.refreshTokenUpdate(); // On Route change, refresh authentication token
         }
       });
   } // end routeChange

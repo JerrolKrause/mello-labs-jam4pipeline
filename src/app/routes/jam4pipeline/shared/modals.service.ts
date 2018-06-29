@@ -8,14 +8,11 @@ import { AssignComponent } from '../components/modals/assign/assign.component';
 import { DocumentUploadComponent } from '../components/modals/document-upload/document-upload.component';
 import { TasksModalComponent } from '../components/modals/tasks-modal/tasks-modal.component';
 
-
 @Injectable()
 export class ModalsService {
-
   public bsModalRef: BsModalRef;
 
-  constructor(private modalService: BsModalService) { }
-
+  constructor(private modalService: BsModalService) {}
 
   /**
    * Open a modal window
@@ -25,7 +22,7 @@ export class ModalsService {
   public openModalWithComponent(modal: 'assign' | 'upload' | 'tasks', data: any) {
     const initialState = {
       data: data,
-      title: 'Modal with component'
+      title: 'Modal with component',
     };
     let component;
     switch (modal) {
@@ -43,6 +40,4 @@ export class ModalsService {
     this.bsModalRef = this.modalService.show(component, { initialState });
     this.bsModalRef.content.closeBtnName = 'Close';
   }
-
-
 }

@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // 3rd Party Tools
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TabsModule, ModalModule, AlertModule, BsDatepickerModule   } from 'ngx-bootstrap';
+import { TabsModule, ModalModule, AlertModule, BsDatepickerModule } from 'ngx-bootstrap';
 
 // Routing
 import { routing } from './jam4pipeline.routes';
@@ -39,7 +39,10 @@ import { ModalsService } from './shared/modals.service';
     HttpClientModule,
 
     // Vendor
-    TabsModule.forRoot(), ModalModule.forRoot(), AlertModule.forRoot(), BsDatepickerModule.forRoot()
+    TabsModule.forRoot(),
+    ModalModule.forRoot(),
+    AlertModule.forRoot(),
+    BsDatepickerModule.forRoot(),
   ],
   providers: [Jam4pipelineService, ModalsService],
   declarations: [
@@ -50,12 +53,8 @@ import { ModalsService } from './shared/modals.service';
     StateComponent,
     AssignComponent,
     DocumentUploadComponent,
-    TasksModalComponent
+    TasksModalComponent,
   ],
-  entryComponents: [
-    AssignComponent,
-    DocumentUploadComponent,
-    TasksModalComponent
-  ]
+  entryComponents: [AssignComponent, DocumentUploadComponent, TasksModalComponent],
 })
 export class Jam4pipelineModule {}

@@ -1,4 +1,4 @@
-<div id="app-manager" class="container-fluid" *ngIf="{ loans : loans$ | async, users : users$ | async } as routeData">
+<div id="app-manager" class="container-fluid" *ngIf="{ tasks : tasks$ | async, users : users$ | async } as routeData">
 
   <app-state [state]="routeData.users">
 
@@ -7,7 +7,7 @@
         <ng-template tabHeading>
           <i aria-hidden="true" class="fa fa-share"></i> Assign Tasks <small><em>({{ routeData.users?.length }})</em></small>
         </ng-template>
-        <app-tasks [loans]="routeData.users" [manager]="true"></app-tasks>
+        <app-tasks [tasks]="routeData.users" [manager]="true"></app-tasks>
       </tab>
       <tab>
         <ng-template tabHeading>
@@ -59,7 +59,7 @@
 
           </div>
         </div>
-        <app-tasks [loans]="routeData.loans" [manager]="true" [finished]="true"></app-tasks>
+        <app-tasks [tasks]="routeData.tasks" [manager]="true" [finished]="true"></app-tasks>
       </tab>
     </tabset>
 

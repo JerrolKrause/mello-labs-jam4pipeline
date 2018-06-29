@@ -10,21 +10,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let entry of users">
-      <td>{{ entry.name }}</td>
+    <tr *ngFor="let user of users">
+      <td>{{ user.userName }}</td>
       <td>
-        <a (click)="modals.openModalWithComponent('tasks',entry)">
-          {{ entry.tasksTotal }}
+        <a (click)="modals.openModalWithComponent('tasks',user)">
+          {{ user.taskCount }}
         </a>
       </td>
       <td>
-        <a (click)="modals.openModalWithComponent('tasks',entry)">
-          {{ entry.tasksNotStarted }}
+        <a (click)="modals.openModalWithComponent('tasks',user)">
+          {{ user.notStarted }}
         </a>
       </td>
       <td>
-        <a (click)="modals.openModalWithComponent('tasks',entry)">
-          {{ entry.tasksOld }}
+        <a (click)="modals.openModalWithComponent('tasks',user)">
+          {{ user.completedInOneWeek }}
         </a>
       </td>
     </tr>

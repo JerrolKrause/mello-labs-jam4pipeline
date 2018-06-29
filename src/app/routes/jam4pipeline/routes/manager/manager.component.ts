@@ -1,16 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 
-import { Jam4pipelineService } from '../../shared/jam4pipeline.service';
+import { Jam4pipelineService } from "../../shared/jam4pipeline.service";
 
 @Component({
-  selector: 'app-manager',
-  templateUrl: './manager.component.html',
-  styleUrls: ['./manager.component.scss'],
+  selector: "app-manager",
+  templateUrl: "./manager.component.html",
+  styleUrls: ["./manager.component.scss"],
   providers: [Jam4pipelineService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ManagerComponent implements OnInit {
-  public loans$ = this.jamSvc.loans$;
+  public tasks$ = this.jamSvc.tasks$;
   public users$ = this.jamSvc.users$;
 
   public dateStart: any;
@@ -19,7 +19,7 @@ export class ManagerComponent implements OnInit {
   constructor(private jamSvc: Jam4pipelineService) {}
 
   ngOnInit() {
-    this.jamSvc.loans.getAll();
-    this.jamSvc.users.getAll();
+    this.jamSvc.tasks.getUnassigned();
+    this.jamSvc.users.getAllUsers();
   }
 }

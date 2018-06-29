@@ -13,7 +13,7 @@ export class TasksModalComponent implements OnInit {
   public data: any;
   public submit = false;
 
-  constructor(public jamSvc: Jam4pipelineService) { } // public activeModal: NgbActiveModal
+  constructor(public jamSvc: Jam4pipelineService) {} // public activeModal: NgbActiveModal
 
   ngOnInit() {}
 
