@@ -1,19 +1,19 @@
-<div id="app-manager" class="container-fluid" *ngIf="{ tasks : tasks$ | async, users : users$ | async } as routeData">
+<div id="app-manager" class="container-fluid" *ngIf="{ tasks : tasksUnassigned$ | async, users : users$ | async } as routeData">
 
   <app-state [state]="routeData.users">
 
     <tabset>
       <tab id="tab1">
         <ng-template tabHeading>
-          <i aria-hidden="true" class="fa fa-share"></i> Assign Tasks <small><em>({{ routeData.users?.length }})</em></small>
+          <i aria-hidden="true" class="fa fa-share"></i> Assign Tasks <small><em>({{ routeData?.tasks?.data?.length }})</em></small>
         </ng-template>
-        <app-tasks [tasks]="routeData.users" [manager]="true"></app-tasks>
+        <app-tasks [tasks]="routeData.tasks.data" [manager]="true"></app-tasks>
       </tab>
       <tab>
         <ng-template tabHeading>
-          <i aria-hidden="true" class="fa fa-users"></i> People <small><em>({{ routeData.users?.length }})</em></small>
+          <i aria-hidden="true" class="fa fa-users"></i> People <small><em>({{ routeData?.users?.data?.length }})</em></small>
         </ng-template>
-        <app-users [users]="routeData.users"></app-users>
+        <app-users [users]="routeData.users.data"></app-users>
       </tab>
       <tab>
         <ng-template tabHeading>

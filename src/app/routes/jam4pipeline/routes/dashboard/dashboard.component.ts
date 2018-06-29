@@ -1,18 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-import { Jam4pipelineService } from "../../shared/jam4pipeline.service";
+import { Jam4pipelineService } from '../../shared/jam4pipeline.service';
 
-import { Models } from "../../shared/jam4pipeline.models";
+import { Models } from '../../shared/jam4pipeline.models';
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "./dashboard.component.html",
-  styleUrls: ["./dashboard.component.scss"],
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss'],
   providers: [Jam4pipelineService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
-  public tasks$ = this.jamSvc.tasks$;
+  public tasksUser$ = this.jamSvc.tasksUser$;
 
   constructor(private jamSvc: Jam4pipelineService) {}
 
@@ -28,5 +28,3 @@ export class DashboardComponent implements OnInit {
     this.jamSvc.actionTaken(action);
   }
 }
-// https://mlo-public-dev.loandepotdev.works/api/v1/taskpipeline/tasks/user/f3d2d332-8a68-4ed4-8ffa-2e54a49f5483
-// https://mlo-public-dev.loandepotdev.works/api/v1/taskpipeline/tasks/user/f3d2d332-8a68-4ed4-8ffa-2e54a49f5483

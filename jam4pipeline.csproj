@@ -83,6 +83,7 @@
     <None Include="src\assets\mock-data\loans.json" />
     <None Include="src\assets\mock-data\login.json" />
     <None Include="src\assets\mock-data\notes.json" />
+    <None Include="src\assets\mock-data\tasks.json" />
     <None Include="src\assets\mock-data\users.json" />
     <None Include="src\assets\mock-data\vesting.json" />
     <None Include="src\manifest.json" />

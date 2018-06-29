@@ -1,31 +1,33 @@
 <form name="formMain" id="modalDocument">
 
   <div class="modal-header">
-    <h3 class="modal-title"><i class="fa fa-upload" aria-hidden="true"></i> Upload Document for <strong>{{ data }}</strong></h3>
+    <h3 class="modal-title"><i class="fa fa-upload" aria-hidden="true"></i> Upload Document</h3>
     <button type="button" class="close" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
 
   <div class="modal-body p-3" id="modal-body">
-    <div style="position:relative;min-height:500px;">
-    File Upload Here
-      <!--
-    <app-file-upload #fileUpload
-                     [frmGroup]="formMain"
-                     frmControl="files"
-                     label="Upload Files"
-                     [multiple]="true"
-                     [fillParent]="true" [dragNdrop]="true"
-                     (filesAdded)="filesAdded($event)">
-    </app-file-upload>
-    -->
-    </div>
+    <table class="table table-sm table-striped table-bordered">
+      <tbody>
+        <tr>
+          <td><strong>Loan Number</strong></td>
+          <td>{{ data.loanNumber }}</td>
+        </tr>
+        <tr>
+          <td><strong>Borrower</strong></td>
+          <td>{{ data.borrowerName }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <em><small>Please select a file for upload</small></em>
+    </p>
+    <input id="fileUpload" type="file" />
   </div>
 
   <div class="modal-footer" style="justify-content: space-between;">
     <button type="button" class="btn btn-interact-outline float-left pull-left dismiss">Cancel</button>
-  
   </div>
 
 </form>

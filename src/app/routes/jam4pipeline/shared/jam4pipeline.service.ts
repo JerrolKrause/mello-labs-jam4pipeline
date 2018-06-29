@@ -7,7 +7,9 @@ const apiRoot = "https://mlo-public-dev.loandepotdev.works/api/v1";
 
 @Injectable()
 export class Jam4pipelineService {
-  public tasks$ = new BehaviorSubject<Models.ApiState<Models.Tasks>>({ loading: null, data: null, error: null });
+  public tasksUser$ = new BehaviorSubject<Models.ApiState<Models.Tasks>>({ loading: null, data: null, error: null });
+  public tasksUnassigned$ = new BehaviorSubject<Models.ApiState<Models.Tasks>>({ loading: null, data: null, error: null });
+  public tasksCompleted$ = new BehaviorSubject<Models.ApiState<Models.Tasks>>({ loading: null, data: null, error: null });
   public users$ = new BehaviorSubject<Models.ApiState<any>>({ loading: null, data: null, error: null });
 
   constructor(private http: HttpClient) {}
@@ -17,24 +19,24 @@ export class Jam4pipelineService {
    */
   public tasks = {
     getUnassigned: () => {
-      this.tasks$.next({ loading: true, data: null, error: null }); // Loading
-      this.http.get<Models.Tasks[]>(apiRoot + "/taskpipeline/tasks/unassigned").subscribe(
-        loans => this.tasks$.next({ loading: false, data: loans, error: null }), // Success
-        error => this.tasks$.next({ loading: false, data: null, error: error }), // Error
+      this.tasksUnassigned$.next({ loading: true, data: null, error: null }); // Loading
+      this.http.get<Models.Tasks[]>('/assets/mock-data/tasks.json').subscribe( // apiRoot + '/taskpipeline/tasks/unassigned'
+        tasks => this.tasksUnassigned$.next({ loading: false, data: tasks, error: null }), // Success
+        error => this.tasksUnassigned$.next({ loading: false, data: null, error: error }), // Error
       );
     },
     getAssignedToUser: (userId: string = 'f3d2d332-8a68-4ed4-8ffa-2e54a49f5483') => {
-      this.tasks$.next({ loading: true, data: null, error: null }); // Loading
-      this.http.get<Models.Tasks[]>(apiRoot + "/taskpipeline/tasks/user/" + userId).subscribe(
-        loans => this.tasks$.next({ loading: false, data: loans, error: null }), // Success
-        error => this.tasks$.next({ loading: false, data: null, error: error }), // Error
+      this.tasksUser$.next({ loading: true, data: null, error: null }); // Loading
+      this.http.get<Models.Tasks[]>('/assets/mock-data/tasks.json?test='+ userId).subscribe( // apiRoot + '/taskpipeline/tasks/user/' + userId
+        loans => this.tasksUser$.next({ loading: false, data: loans, error: null }), // Success
+        error => this.tasksUser$.next({ loading: false, data: null, error: error }), // Error
       );
     },
     getCompleted: () => {
-      this.tasks$.next({ loading: true, data: null, error: null }); // Loading
-      this.http.get<Models.Tasks[]>(apiRoot + "/taskpipeline/tasks/unassigned").subscribe(
-        loans => this.tasks$.next({ loading: false, data: loans, error: null }), // Success
-        error => this.tasks$.next({ loading: false, data: null, error: error }), // Error
+      this.tasksCompleted$.next({ loading: true, data: null, error: null }); // Loading
+      this.http.get<Models.Tasks[]>(apiRoot + '/taskpipeline/tasks/completed').subscribe(
+        loans => this.tasksCompleted$.next({ loading: false, data: loans, error: null }), // Success
+        error => this.tasksCompleted$.next({ loading: false, data: null, error: error }), // Error
       );
     },
     start: (taskGuid: string) => {
@@ -60,7 +62,7 @@ export class Jam4pipelineService {
   public users = {
     getAllUsers: () => {
       this.users$.next({ loading: true, data: null, error: null }); // Loading
-      this.http.get<any[]>(apiRoot + "/taskpipeline/permissions/user").subscribe(
+      this.http.get<any[]>('/assets/mock-data/users.json').subscribe( // apiRoot + '/taskpipeline/permissions/user'
         users => this.users$.next({ loading: false, data: users, error: null }), // Success
         error => this.users$.next({ loading: false, data: null, error: error }), // Error
       );

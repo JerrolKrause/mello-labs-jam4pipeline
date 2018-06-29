@@ -40,7 +40,7 @@
         {{ entry.propertyState }}
       </td>
       <td *ngIf="!manager">
-        <button class="btn btn-sm btn-secondary w-100 text-center" (click)="start(entry.id)" *ngIf="!manager && !model[entry.id]?.dateStarted">
+        <button class="btn btn-sm btn-secondary w-100 text-center" (click)="start(entry.id)" *ngIf="!entry.startedDate">
           <i class="fa fa-play-circle" aria-hidden="true"></i> Start
         </button>
         <ng-container *ngIf="model[entry.id]?.dateStarted">
@@ -48,7 +48,7 @@
         </ng-container>
       </td>
       <td class="text-center" *ngIf="!manager">
-        <button class="btn btn-sm btn-secondary w-100 text-center" [disabled]="!model[entry.id]?.dateStarted" (click)="followup(entry.id)">
+        <button class="btn btn-sm btn-secondary w-100 text-center" [disabled]="!model[entry.id]?.startedDate" (click)="followup(entry.id)">
           <i class="fa fa-paper-plane" aria-hidden="true"></i> Follow Up
         </button>
       </td>
@@ -58,13 +58,14 @@
         </small>
       </td>
       <td class="text-center" *ngIf="!manager">
-        <a (click)="modals.openModalWithComponent('upload',model[entry.id])">
-        <i class="fa fa-thumbs-up" aria-hidden="true"></i> Finish</a>
+        <button class="btn btn-sm btn-secondary w-100 text-center" [disabled]="!entry?.startedDate" (click)="modals.openModalWithComponent('upload', entry)">
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i> Finish
+        </button>
       </td>
       <td class="text-center" *ngIf="manager && !finished">
-        <a (click)="modals.openModalWithComponent('assign',model[entry.id])">
-        <i class="fa fa-thumbs-up" aria-hidden="true"></i> Finish</a>
-
+        <button class="btn btn-sm btn-secondary w-100 text-center" [disabled]="!entry?.startedDate" (click)="modals.openModalWithComponent('assign', entry)">
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i> Finish
+        </button>
       </td>
       <td class="text-center" *ngIf="manager && !finished" style="position:relative;">
         <label class="mb-0 pt-2 pb-2">
